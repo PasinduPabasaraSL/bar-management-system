@@ -31,6 +31,13 @@ This Bar Management System is a JavaFX-based desktop application designed for ma
    mvn clean install
    java -jar target/bar-management.jar
    ```
+## Ui
+- **Login and Dashboard**
+<img src="src/main/resources/screenshots/login.png" width="700"/>
+
+<img src="src/main/resources/screenshots/dashboard.png" width="700"/>
+
+   
 ## Future Improvements
 - Improve reporting features
 
