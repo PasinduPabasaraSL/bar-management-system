@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="root" prefHeight="684.0" prefWidth="700.0" style="-fx-background-color: linear-gradient(to bottom right, #f8f9ff, #ffffff);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.barmanagementsystempro.controller.UpdateController">
+
+    <VBox alignment="TOP_CENTER" spacing="30" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="40.0">
+
+        <!-- Header Section -->
+        <VBox alignment="CENTER" spacing="8">
+            <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2d3436;" text="Update Inventory Item" />
+            <Label style="-fx-font-size: 14px; -fx-text-fill: #636e72;" text="Modify the item details below" />
+        </VBox>
+
+        <!-- Form Container -->
+        <VBox maxWidth="550" style="-fx-background-color: white; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 15, 0, 0, 1);">
+            <padding>
+                <Insets bottom="30" left="35" right="35" top="30" />
+            </padding>
+
+            <VBox spacing="20">
+                <!-- Item Name Field -->
+                <VBox spacing="8">
+                    <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #2d3436;" text="Item Name" />
+                    <TextField fx:id="txtItemName" promptText="Enter item name" style="-fx-font-size: 14px; -fx-padding: 12 15; -fx-background-color: #f5f6fa; -fx-text-fill: #2d3436; -fx-background-radius: 8; -fx-border-color: #dfe6e9; -fx-border-radius: 8;" />
+                </VBox>
+
+                <!-- Category Field -->
+                <VBox spacing="8">
+                    <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #2d3436;" text="Category" />
+                    <TextField fx:id="txtCategory" promptText="Enter category" style="-fx-font-size: 14px; -fx-padding: 12 15; -fx-background-color: #f5f6fa; -fx-text-fill: #2d3436; -fx-background-radius: 8; -fx-border-color: #dfe6e9; -fx-border-radius: 8;" />
+                </VBox>
+
+                <!-- Quantity Field -->
+                <VBox spacing="8">
+                    <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #2d3436;" text="Quantity" />
+                    <TextField fx:id="txtQty" promptText="Enter quantity" style="-fx-font-size: 14px; -fx-padding: 12 15; -fx-background-color: #f5f6fa; -fx-text-fill: #2d3436; -fx-background-radius: 8; -fx-border-color: #dfe6e9; -fx-border-radius: 8;" />
+                </VBox>
+
+                <!-- Price Field -->
+                <VBox spacing="8">
+                    <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #2d3436;" text="Price" />
+                    <TextField fx:id="txtPrice" promptText="Enter price" style="-fx-font-size: 14px; -fx-padding: 12 15; -fx-background-color: #f5f6fa; -fx-text-fill: #2d3436; -fx-background-radius: 8; -fx-border-color: #dfe6e9; -fx-border-radius: 8;" />
+                </VBox>
+
+                <!-- Buttons -->
+                <HBox alignment="CENTER" spacing="15" style="-fx-padding: 20 0 0 0;">
+                    <Button onAction="#handleUpdate" prefWidth="150" style="-fx-background-color: #00b894; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 12 25; -fx-effect: dropshadow(gaussian, rgba(0,184,148,0.25), 8, 0, 0, 2);" text="Update">
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                    </Button>
+
+                    <Button onAction="#back" prefWidth="150" style="-fx-background-color: #f5f6fa; -fx-text-fill: #636e72; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 12 25; -fx-border-color: #dfe6e9; -fx-border-radius: 8;" text="Back">
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                    </Button>
+                </HBox>
+            </VBox>
+        </VBox>
+    </VBox>
+
+</AnchorPane>

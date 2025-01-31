@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+<BorderPane prefHeight="700" prefWidth="1370" style="-fx-background-color: #f0f2f5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.barmanagementsystempro.controller.HomeController">
+
+    <!-- Left Navigation (Previous code remains the same) -->
+    <left>
+        <VBox style="-fx-background-color: #2C3E50; -fx-padding: 0; -fx-pref-width: 250;">
+            <!-- Previous left panel content remains the same -->
+            <!-- Brand -->
+            <HBox style="-fx-background-color: #243444; -fx-padding: 20; -fx-alignment: center-left;">
+                <Label style="-fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold;" text="Liquid Ledger" />
+            </HBox>
+
+            <!-- Navigation Items -->
+            <VBox style="-fx-padding: 10;">
+                <Button fx:id="dashboardBtn" onAction="#handleDashboard" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-padding: 15; -fx-font-size: 14; -fx-alignment: center-left; -fx-min-width: 230; -fx-cursor: hand;" text="🏠  Dashboard" />
+
+                <Button fx:id="ordersBtn" onAction="#handleOrders" style="-fx-background-color: transparent; -fx-text-fill: #ECF0F1; -fx-padding: 15; -fx-font-size: 14; -fx-alignment: center-left; -fx-min-width: 230; -fx-cursor: hand;" text="🛒  Orders" />
+
+                <Button fx:id="posBtn" onAction="#handlePOS" style="-fx-background-color: transparent; -fx-text-fill: #ECF0F1; -fx-padding: 15; -fx-font-size: 14; -fx-alignment: center-left; -fx-min-width: 230; -fx-cursor: hand;" text="💵  POS" />
+
+                <Button fx:id="inventoryBtn" onAction="#handleInventory" style="-fx-background-color: transparent; -fx-text-fill: #ECF0F1; -fx-padding: 15; -fx-font-size: 14; -fx-alignment: center-left; -fx-min-width: 230; -fx-cursor: hand;" text="📦  Inventory" />
+
+                <Button fx:id="suppliersBtn" onAction="#handleSuppliers" style="-fx-background-color: transparent; -fx-text-fill: #ECF0F1; -fx-padding: 15; -fx-font-size: 14; -fx-alignment: center-left; -fx-min-width: 230; -fx-cursor: hand;" text="🚚  Suppliers" />
+
+                <Button fx:id="staffBtn" onAction="#handleStaff" style="-fx-background-color: transparent; -fx-text-fill: #ECF0F1; -fx-padding: 15; -fx-font-size: 14; -fx-alignment: center-left; -fx-min-width: 230; -fx-cursor: hand;" text="👥  Staff" />
+
+                <Label style="-fx-text-fill: #7F8C8D; -fx-font-size: 12; -fx-font-weight: bold; -fx-padding: 15 15 5 15;" text="REPORTS" />
+
+                <Button fx:id="salesReportBtn" onAction="#handleSalesReport" style="-fx-background-color: transparent; -fx-text-fill: #ECF0F1; -fx-padding: 15; -fx-font-size: 14; -fx-alignment: center-left; -fx-min-width: 230; -fx-cursor: hand;" text="📊  Sales Report" />
+
+                <Button fx:id="inventoryReportBtn" onAction="#handleInventoryReport" style="-fx-background-color: transparent; -fx-text-fill: #ECF0F1; -fx-padding: 15; -fx-font-size: 14; -fx-alignment: center-left; -fx-min-width: 230; -fx-cursor: hand;" text="📈  Inventory Report" />
+            </VBox>
+
+            <Region VBox.vgrow="ALWAYS" />
+
+            <!-- User Profile with Professional Emoji in Circle -->
+            <VBox style="-fx-padding: 15; -fx-border-color: #34495E; -fx-border-width: 1 0 0 0;">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <!-- StackPane to hold Circle and Emoji -->
+                    <StackPane>
+                        <!-- Circle background -->
+                        <Circle fill="#3498DB" radius="20" />
+                        <!-- Professional Emoji inside the circle -->
+                        <Label style="-fx-font-size: 23;" text="👨🏻‍⚖️" />
+                    </StackPane>
+
+                    <VBox>
+                        <Label fx:id="lblUserName" style="-fx-text-fill: white; -fx-font-weight: bold;" text="John Doe" />
+                        <Label fx:id="lblRole" style="-fx-text-fill: white; -fx-font-weight: bold;" text="Manager" />
+                    </VBox>
+
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button onAction="#handleLogout" style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-font-size: 12; -fx-padding: 5 10; -fx-cursor: hand;" text="Logout" />
+                </HBox>
+            </VBox>
+        </VBox>
+    </left>
+
+    <!-- Updated Center Content -->
+    <center>
+        <VBox>
+            <!-- Top Bar remains unchanged -->
+            <HBox style="-fx-background-color: white; -fx-padding: 10 20; -fx-border-color: #E0E0E0; -fx-border-width: 0 0 1 0;">
+                <Region HBox.hgrow="ALWAYS" />
+                <HBox alignment="CENTER" spacing="15">
+                    <Label fx:id="clockLabel" style="-fx-font-size: 14; -fx-font-weight: bold;" />
+                    <Label style="-fx-font-size: 20; -fx-cursor: hand;" text="🔔" />
+                    <Label style="-fx-font-size: 20; -fx-cursor: hand;" text="⚙️" />
+                </HBox>
+            </HBox>
+
+            <!-- Dashboard Content -->
+            <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
+                <VBox fx:id="contentArea" style="-fx-padding: 10; -fx-spacing: 20;">
+
+                    <!-- Key Metrics Grid -->
+                    <GridPane hgap="20" vgap="20">
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="25" />
+                            <ColumnConstraints percentWidth="25" />
+                            <ColumnConstraints percentWidth="25" />
+                            <ColumnConstraints percentWidth="25" />
+                        </columnConstraints>
+
+                        <!-- Daily Sales -->
+                        <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                            <Label style="-fx-font-size: 14; -fx-text-fill: #666;" text="Daily Sales" />
+                            <Label style="-fx-font-size: 24; -fx-font-weight: bold;" text="2,584" />
+                            <Label style="-fx-font-size: 12; -fx-text-fill: #4CAF50;" text="+12.5% from yesterday" />
+                        </VBox>
+
+                        <!-- Total Orders -->
+                        <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                            <Label style="-fx-font-size: 14; -fx-text-fill: #666;" text="Total Orders" />
+                            <Label style="-fx-font-size: 24; -fx-font-weight: bold;" text="45" />
+                            <Label style="-fx-font-size: 12; -fx-text-fill: #2196F3;" text="8 pending orders" />
+                        </VBox>
+
+                        <!-- Popular Items -->
+                        <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                            <Label style="-fx-font-size: 14; -fx-text-fill: #666;" text="Most Popular" />
+                            <Label style="-fx-font-size: 24; -fx-font-weight: bold;" text="Mojito" />
+                            <Label style="-fx-font-size: 12; -fx-text-fill: #FF9800;" text="85 orders today" />
+                        </VBox>
+
+                        <!-- Stock Status -->
+                        <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                            <Label style="-fx-font-size: 14; -fx-text-fill: #666;" text="Low Stock Items" />
+                            <Label style="-fx-font-size: 24; -fx-font-weight: bold;" text="3" />
+                            <Label style="-fx-font-size: 12; -fx-text-fill: #E53935;" text="Requires attention" />
+                        </VBox>
+                        <rowConstraints>
+                            <RowConstraints />
+                        </rowConstraints>
+                    </GridPane>
+
+                    <!-- Charts Section -->
+                    <HBox spacing="20">
+                        <!-- Sales Trend Chart -->
+                        <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" HBox.hgrow="ALWAYS">
+                            <Label style="-fx-font-size: 16; -fx-font-weight: bold;" text="Sales Trend" />
+                            <BarChart fx:id="salesChart" animated="false" legendVisible="false">
+                                <xAxis>
+                                    <CategoryAxis label="Time" />
+                                </xAxis>
+                                <yAxis>
+                                    <NumberAxis label="Sales ($)" />
+                                </yAxis>
+                            </BarChart>
+                        </VBox>
+
+                        <!-- Category Distribution -->
+                        <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" HBox.hgrow="ALWAYS">
+                            <Label style="-fx-font-size: 16; -fx-font-weight: bold;" text="Sales by Category" />
+                            <PieChart fx:id="categoryChart" animated="false" />
+                        </VBox>
+                    </HBox>
+
+                    <!-- Recent Orders Table -->
+                    <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+                        <Label style="-fx-font-size: 16; -fx-font-weight: bold;" text="Recent Orders" />
+                        <GridPane hgap="10" style="-fx-padding: 10 0;" vgap="10">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="20" />
+                                <ColumnConstraints percentWidth="30" />
+                                <ColumnConstraints percentWidth="25" />
+                                <ColumnConstraints percentWidth="25" />
+                            </columnConstraints>
+
+                            <!-- Header -->
+                            <Label style="-fx-font-weight: bold;" text="Order ID" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                            <Label style="-fx-font-weight: bold;" text="Items" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                            <Label style="-fx-font-weight: bold;" text="Total" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                            <Label style="-fx-font-weight: bold;" text="Status" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+
+                            <!-- Sample Order 1 -->
+                            <Label text="#1234" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                            <Label text="Mojito, Beer, Nachos" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                            <Label text="45.00" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                            <Label style="-fx-text-fill: #4CAF50;" text="Completed" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+
+                            <!-- Sample Order 2 -->
+                            <Label text="#1235" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                            <Label text="Whiskey Sour, Wings" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                            <Label text="32.50" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                            <Label style="-fx-text-fill: #FF9800;" text="In Progress" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+
+                            <!-- Sample Order 3 -->
+                            <Label text="#1236" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                            <Label text="Margarita, Tacos" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                            <Label text="28.75" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                            <Label style="-fx-text-fill: #2196F3;" text="New" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                            <rowConstraints>
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                            </rowConstraints>
+                        </GridPane>
+                    </VBox>
+
+                </VBox>
+            </ScrollPane>
+        </VBox>
+    </center>
+
+    <!-- Right Panel - Optimized for 700px height -->
+    <right>
+        <ScrollPane fitToWidth="true" style="-fx-background-color: white; -fx-background: white; -fx-border-color: #E0E0E0; -fx-border-width: 0 0 0 1;">
+            <VBox prefHeight="698.0" prefWidth="170.0" style="-fx-background-color: transparent; -fx-padding: 15; -fx-pref-width: 300; -fx-spacing: 15;">
+                <!-- Quick Stats - Condensed -->
+                <VBox style="-fx-spacing: 10;">
+                    <Label style="-fx-font-size: 14; -fx-font-weight: bold;" text="Quick Stats" />
+                    <HBox spacing="10">
+                        <!-- Revenue Card -->
+                        <VBox style="-fx-background-color: #E8F5E9; -fx-padding: 10; -fx-background-radius: 8;" HBox.hgrow="ALWAYS">
+                            <Label style="-fx-text-fill: #2E7D32; -fx-font-weight: bold; -fx-font-size: 12;" text="Today's Revenue" />
+                            <Label fx:id="lblRevenue" style="-fx-text-fill: #2E7D32; -fx-font-size: 15; -fx-font-weight: bold;" text=" " />
+                            <Label fx:id="lblRevenueIncreasePercentage" style="-fx-font-size: 11;" />
+                        </VBox>
+                        <!-- Orders Card -->
+                        <VBox style="-fx-background-color: #E3F2FD; -fx-padding: 10; -fx-background-radius: 8;" HBox.hgrow="ALWAYS">
+                            <Label style="-fx-text-fill: #1565C0; -fx-font-weight: bold; -fx-font-size: 12;" text="Active Orders" />
+                            <Label fx:id="lblCompleteOrders" style="-fx-text-fill: #1565C0; -fx-font-size: 18; -fx-font-weight: bold;" />
+                            <Label fx:id="lblPendingOrders" style="-fx-text-fill: #1565C0; -fx-font-size: 11;" text="2 pending" />
+                        </VBox>
+                    </HBox>
+                </VBox>
+                <Label style="-fx-font-size: 14; -fx-font-weight: bold;" text="Low Stock Alerts" />
+
+                <!-- Low Stock Alerts - Compact -->
+                <VBox fx:id="lowStockAlert" style="-fx-spacing: 8;">
+                    <VBox style="-fx-spacing: 5;">
+                        <HBox alignment="CENTER_LEFT" style="-fx-background-color: #FFF3E0; -fx-padding: 8; -fx-background-radius: 5; -fx-spacing: 10;">
+                            <Label style="-fx-font-weight: bold; -fx-font-size: 12;" text="Premium Vodka (2)" />
+                            <Region HBox.hgrow="ALWAYS" />
+                            <Button style="-fx-background-color: #FF9800; -fx-text-fill: white; -fx-font-size: 11;" text="Reorder">
+                                <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                </cursor>
+                            </Button>
+                        </HBox>
+                    </VBox>
+                </VBox>
+
+                <!-- Recent Activities - Streamlined -->
+                <VBox style="-fx-spacing: 8;">
+                    <Label style="-fx-font-size: 14; -fx-font-weight: bold;" text="Recent Activities" />
+                    <VBox style="-fx-spacing: 5;">
+                        <HBox style="-fx-padding: 5; -fx-border-color: #E0E0E0; -fx-border-width: 0 0 1 0;">
+                            <VBox HBox.hgrow="ALWAYS">
+                                <Label style="-fx-font-weight: bold; -fx-font-size: 12;" text="New Order #1234" />
+                                <Label style="-fx-text-fill: #666; -fx-font-size: 11;" text="2 minutes ago" />
+                            </VBox>
+                            <Label style="-fx-text-fill: #4CAF50; -fx-font-size: 11;" text="COMPLETED" />
+                        </HBox>
+                        <HBox style="-fx-padding: 5; -fx-border-color: #E0E0E0; -fx-border-width: 0 0 1 0;">
+                            <VBox HBox.hgrow="ALWAYS">
+                                <Label style="-fx-font-weight: bold; -fx-font-size: 12;" text="Stock Updated" />
+                                <Label style="-fx-text-fill: #666; -fx-font-size: 11;" text="15 minutes ago" />
+                            </VBox>
+                            <Label style="-fx-text-fill: #2196F3; -fx-font-size: 11;" text="SYSTEM" />
+                        </HBox>
+                        <HBox style="-fx-padding: 5; -fx-border-color: #E0E0E0; -fx-border-width: 0 0 1 0;">
+                            <VBox HBox.hgrow="ALWAYS">
+                                <Label style="-fx-font-weight: bold; -fx-font-size: 12;" text="Payment Received" />
+                                <Label style="-fx-text-fill: #666; -fx-font-size: 11;" text="1 hour ago" />
+                            </VBox>
+                            <Label style="-fx-text-fill: #4CAF50; -fx-font-size: 11;" text="150.00" />
+                        </HBox>
+                    </VBox>
+                </VBox>
+
+                <!-- System Status - Compact Grid -->
+                <VBox style="-fx-spacing: 8;">
+                    <Label style="-fx-font-size: 14; -fx-font-weight: bold;" text="System Status" />
+                    <GridPane hgap="8" vgap="8">
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="50" />
+                            <ColumnConstraints percentWidth="50" />
+                        </columnConstraints>
+                        <Label style="-fx-text-fill: #4CAF50; -fx-font-size: 12;" text="POS System" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+
+                        <Label style="-fx-text-fill: #4CAF50; -fx-font-size: 12;" text="Database" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+
+                        <rowConstraints>
+                            <RowConstraints />
+                            <RowConstraints />
+                        </rowConstraints>
+                    </GridPane>
+                </VBox>
+
+                <!-- Today's Sales Summary -->
+                <VBox style="-fx-spacing: 8;">
+                    <Label style="-fx-font-size: 14; -fx-font-weight: bold;" text="Today's Summary" />
+                    <GridPane hgap="10" style="-fx-background-color: #F5F5F5; -fx-padding: 10; -fx-background-radius: 5;" vgap="5">
+                        <Label style="-fx-font-size: 12;" text="Total Orders:" />
+                        <Label fx:id="lblTotalOrders" style="-fx-font-size: 12; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                        <Label style="-fx-font-size: 12;" text="Total Items:" GridPane.rowIndex="1" />
+                        <Label fx:id="lblTotalItems" style="-fx-font-size: 12; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                        <Label style="-fx-font-size: 12;" text="Total Revenue:" GridPane.rowIndex="2" />
+                        <Label fx:id="lblTotalRevenue" style="-fx-font-size: 12; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label style="-fx-font-size: 12;" text="Total Cost:" GridPane.rowIndex="3" />
+                        <Label fx:id="lblTotalCost" style="-fx-font-size: 12; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label style="-fx-font-size: 12;" text="Profit:" GridPane.rowIndex="4" />
+                        <Label fx:id="lblProfit" style="-fx-font-size: 12; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <columnConstraints>
+                            <ColumnConstraints />
+                            <ColumnConstraints />
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints />
+                            <RowConstraints />
+                            <RowConstraints />
+                            <RowConstraints />
+                     <RowConstraints />
+                        </rowConstraints>
+                    </GridPane>
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </right>
+
+</BorderPane>

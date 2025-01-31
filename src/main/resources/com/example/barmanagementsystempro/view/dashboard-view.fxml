@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.barmanagementsystempro.controller.DashboardController">
+
+    <!-- Main Content Area -->
+    <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+        <VBox fx:id="contentArea" style=" -fx-spacing: 20;">
+            <!-- Welcome Message -->
+            <HBox style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+                <VBox>
+                    <Label fx:id="lblWelcome" style="-fx-font-size: 24; -fx-font-weight: bold;" />
+                    <Label style="-fx-font-size: 14; -fx-text-fill: #666;" text="Here's what's happening with your bar today" />
+                </VBox>
+            </HBox>
+
+            <!-- Key Metrics Grid -->
+            <GridPane hgap="20" vgap="20">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="25" />
+                    <ColumnConstraints percentWidth="25" />
+                    <ColumnConstraints percentWidth="25" />
+                    <ColumnConstraints percentWidth="25" />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints />
+                </rowConstraints>
+
+                <!-- Daily Sales -->
+                <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <Label style="-fx-font-size: 14; -fx-text-fill: #666;" text="Daily Sales" />
+                    <Label style="-fx-font-size: 24; -fx-font-weight: bold;" text="2,584" />
+                    <Label style="-fx-font-size: 12; -fx-text-fill: #4CAF50;" text="+12.5% from yesterday" />
+                </VBox>
+
+                <!-- Total Orders -->
+                <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <Label style="-fx-font-size: 14; -fx-text-fill: #666;" text="Total Orders" />
+                    <Label style="-fx-font-size: 24; -fx-font-weight: bold;" text="45" />
+                    <Label style="-fx-font-size: 12; -fx-text-fill: #2196F3;" text="8 pending orders" />
+                </VBox>
+
+                <!-- Popular Items -->
+                <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                    <Label style="-fx-font-size: 14; -fx-text-fill: #666;" text="Most Popular" />
+                    <Label style="-fx-font-size: 24; -fx-font-weight: bold;" text="Mojito" />
+                    <Label style="-fx-font-size: 12; -fx-text-fill: #FF9800;" text="85 orders today" />
+                </VBox>
+
+                <!-- Stock Status -->
+                <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                    <Label style="-fx-font-size: 14; -fx-text-fill: #666;" text="Low Stock Items" />
+                    <Label fx:id="lblLowStockItems" style="-fx-font-size: 24; -fx-font-weight: bold;" text="3" />
+                    <Label fx:id="lblAttention" style="-fx-font-size: 12; -fx-text-fill: #E53935;" text="Requires attention" />
+                </VBox>
+            </GridPane>
+
+            <!-- Charts Section -->
+            <HBox spacing="20">
+                <!-- Sales Trend Chart -->
+                <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" HBox.hgrow="ALWAYS">
+                    <Label style="-fx-font-size: 16; -fx-font-weight: bold;" text="Sales Trend" />
+                    <BarChart fx:id="salesChart" animated="false" legendVisible="false">
+                        <xAxis>
+                            <CategoryAxis label="Time" />
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="Sales ($)" />
+                        </yAxis>
+                    </BarChart>
+                </VBox>
+
+                <!-- Category Distribution -->
+                <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" HBox.hgrow="ALWAYS">
+                    <Label style="-fx-font-size: 16; -fx-font-weight: bold;" text="Sales by Category" />
+                    <PieChart fx:id="categoryChart" animated="false" />
+                </VBox>
+            </HBox>
+
+            <!-- Recent Orders Table -->
+            <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+                <Label style="-fx-font-size: 16; -fx-font-weight: bold;" text="Recent Orders" />
+                <GridPane hgap="10" style="-fx-padding: 10 0;" vgap="10">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="20" />
+                        <ColumnConstraints percentWidth="30" />
+                        <ColumnConstraints percentWidth="25" />
+                        <ColumnConstraints percentWidth="25" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                    </rowConstraints>
+
+                    <!-- Header -->
+                    <Label style="-fx-font-weight: bold;" text="Order ID" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <Label style="-fx-font-weight: bold;" text="Items" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                    <Label style="-fx-font-weight: bold;" text="Total" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                    <Label style="-fx-font-weight: bold;" text="Status" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+
+                    <!-- Sample Orders -->
+                    <Label text="#1234" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                    <Label text="Mojito, Beer, Nachos" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                    <Label text="45.00" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                    <Label style="-fx-text-fill: #4CAF50;" text="Completed" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+
+                    <Label text="#1235" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                    <Label text="Whiskey Sour, Wings" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                    <Label text="32.50" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                    <Label style="-fx-text-fill: #FF9800;" text="In Progress" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+
+                    <Label text="#1236" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                    <Label text="Margarita, Tacos" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                    <Label text="28.75" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                    <Label style="-fx-text-fill: #2196F3;" text="New" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                </GridPane>
+            </VBox>
+        </VBox>
+    </ScrollPane>
+</VBox>

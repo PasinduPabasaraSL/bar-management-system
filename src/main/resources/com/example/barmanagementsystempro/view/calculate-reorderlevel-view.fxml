@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="root" prefHeight="529.0" prefWidth="552.0" spacing="20" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.barmanagementsystempro.controller.CalculateReorderlevelController">
+    <padding>
+        <Insets bottom="30" left="30" right="30" top="30" />
+    </padding>
+
+    <!-- Header Section -->
+    <HBox alignment="CENTER_LEFT" spacing="20">
+        <Label style="-fx-font-weight: bold; -fx-text-fill: #2C3E50; -fx-font-size: 14px;" text="Item Name:" />
+        <Label fx:id="lblItemName" style="-fx-text-fill: #3498DB;" />
+        <Label style="-fx-font-weight: bold; -fx-text-fill: #2C3E50; -fx-font-size: 14px;" text="Reorder Level:" />
+        <Label fx:id="lblPreviousROL" style="-fx-text-fill: #3498DB;" />
+    </HBox>
+
+    <Label style="-fx-font-weight: bold; -fx-text-fill: #2C3E50; -fx-font-size: 24px;" text="Change Reorder Level" />
+
+    <Separator style="-fx-background-color: #E0E0E0;" />
+
+    <GridPane hgap="15" vgap="20">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" />
+            <ColumnConstraints hgrow="SOMETIMES" />
+        </columnConstraints>
+
+        <TextField fx:id="txtAvgDemand" promptText="Average Demand per Week" style="-fx-background-color: #F8F9FA; -fx-background-radius: 6px; -fx-border-radius: 6px; -fx-border-color: #E0E0E0; -fx-padding: 10px; -fx-font-size: 13px; -fx-prompt-text-fill: #95A5A6;" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+
+        <TextField fx:id="txtLeadTime" promptText="Lead Time in Weeks" style="-fx-background-color: #F8F9FA; -fx-background-radius: 6px; -fx-border-radius: 6px; -fx-border-color: #E0E0E0; -fx-padding: 10px; -fx-font-size: 13px; -fx-prompt-text-fill: #95A5A6;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+        <Button onAction="#calLeadTimeDemand" style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-background-radius: 6px; -fx-padding: 12px 20px; -fx-font-size: 13px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 4, 0, 0, 1);" text="Calculate Lead Time Demand" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+
+        <Label style="-fx-font-weight: bold; -fx-text-fill: #2C3E50;" text="Lead Time Demand:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Label fx:id="lblLeadTimeDemand" style="-fx-text-fill: #3498DB;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+        <TextField fx:id="txtZScore" promptText="Desired Service Level (Z-score)" style="-fx-background-color: #F8F9FA; -fx-background-radius: 6px; -fx-border-radius: 6px; -fx-border-color: #E0E0E0; -fx-padding: 10px; -fx-font-size: 13px; -fx-prompt-text-fill: #95A5A6;" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+
+        <TextField fx:id="txtStandardDeviationOfDemand" promptText="Standard Deviation of Demand" style="-fx-background-color: #F8F9FA; -fx-background-radius: 6px; -fx-border-radius: 6px; -fx-border-color: #E0E0E0; -fx-padding: 10px; -fx-font-size: 13px; -fx-prompt-text-fill: #95A5A6;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+        <Button onAction="#calSafetyStock" style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-background-radius: 6px; -fx-padding: 12px 20px; -fx-font-size: 13px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 4, 0, 0, 1);" text="Calculate Safety Stock" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="4">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+
+        <Label style="-fx-font-weight: bold; -fx-text-fill: #2C3E50;" text="Safety Stock:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+        <Label fx:id="lblSafetyStock" style="-fx-text-fill: #3498DB;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+    </GridPane>
+
+    <HBox alignment="CENTER" spacing="20" style="-fx-padding: 20 0;">
+        <Button onAction="#calROL" style="-fx-background-color: #2ECC71; -fx-text-fill: white; -fx-background-radius: 6px; -fx-padding: 12px 20px; -fx-font-size: 13px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 4, 0, 0, 1);" text="Calculate Reorder Level (ROL)" />
+        <Label style="-fx-font-weight: bold; -fx-text-fill: #2C3E50;" text="ROL:" />
+        <Label fx:id="lblROL" style="-fx-text-fill: #3498DB;" />
+    </HBox>
+
+    <HBox alignment="CENTER" spacing="20">
+        <Button onAction="#handleSaveROL" style="-fx-background-color: #2ECC71; -fx-text-fill: white; -fx-background-radius: 6px; -fx-padding: 12px 30px; -fx-font-size: 13px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 4, 0, 0, 1);" text="Save" />
+        <Button onAction="#back" style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-background-radius: 6px; -fx-padding: 12px 30px; -fx-font-size: 13px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 4, 0, 0, 1);" text="Back" />
+    </HBox>
+</VBox>
